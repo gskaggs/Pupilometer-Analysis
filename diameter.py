@@ -1,13 +1,14 @@
 from PIL import Image
 
 command_line = input().split()
-command_line_names = ["Photo Name", "Pixel Width (mm)", "Epsilon"]
+command_line_names = ["Input Filename", "Output Filename", "Pixel Width (mm)", "Epsilon"]
 for arg in zip(command_line_names, command_line):
     print(arg)
 
 filename = command_line[0]
-pxl_width = float(command_line[1])
-epsilon = float(command_line[2])
+output_filename = command_line[1]
+pxl_width = float(command_line[2])
+epsilon = float(command_line[3])
 
 image = Image.open(filename)
 in_data = image.load()
@@ -91,7 +92,7 @@ if result:
     print("Horizontal Diameter:", (x_hi - x_lo) * pxl_width, "mm")
     print("Vertical Diameter:", (y_hi - y_lo) * pxl_width, "mm")
 
-    output.save("output.png")
+    output.save(output_filename)
 else:
     print("Pupil Not Centered")
 

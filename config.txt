@@ -1,1 +1,1 @@
-input.png 0.1 128
+input.png output.png 0.1 128

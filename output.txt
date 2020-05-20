@@ -1,4 +1,5 @@
-('Photo Name', 'input.png')
+('Input Filename', 'input.png')
+('Output Filename', 'output.png')
 ('Pixel Width (mm)', '0.1')
 ('Epsilon', '128')
 
