@@ -33,10 +33,14 @@ def valid(x, y):
     # In Bounds
     if x < 0 or y < 0 or x >= width or y >= height:
         return False
-
+    
+    # Black color
     return intensity(in_data[x,y]) < epsilon
 
-
+# Returns None if center point not black.
+# Otherwise, flood fills pupil, coloring border blue
+# and returning the lowest/highest x,y values
+# recorded in the pupil.
 def flood_fill():
     global image
     global output
