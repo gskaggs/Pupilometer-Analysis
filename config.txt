@@ -1,1 +1,1 @@
-input.png 0.1 90
+input.png 0.1 128

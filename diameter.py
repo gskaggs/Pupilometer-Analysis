@@ -18,6 +18,9 @@ out_data = output.load()
 ###############################################################################
 from queue import Queue
 
+def intensity(color):
+    return (color[0]**2 + color[1]**2 + color[2]**2)**0.5
+
 def valid(x, y):
     global epsilon
     global image
@@ -28,7 +31,7 @@ def valid(x, y):
     if x < 0 or y < 0 or x >= width or y >= height:
         return False
 
-    return in_data[x,y] < epsilon
+    return intensity(in_data[x,y]) < epsilon
 
 
 def flood_fill():
@@ -43,7 +46,6 @@ def flood_fill():
     visited = [[False for y in range(height)] for x in range(width)]
 
     start = (width//2, height//2)
-
 
     # Invariant: Each duple put in queue must be valid
     if not valid(start[0], start[1]):
@@ -60,7 +62,6 @@ def flood_fill():
             continue
 
         visited[x][y] = True
-        out_data[x,y] = 255 
 
         # Update result
         x_lo = min(x_lo, x)
@@ -73,9 +74,9 @@ def flood_fill():
             xp, yp = x + dx[i], y + dy[i]
             if valid(xp, yp):
                 q.put((xp, yp))
-
-
-
+            else:
+                # Edge point
+                out_data[x,y] = (0,0,255)
 
     return (x_lo, x_hi, y_lo, y_hi)
 
