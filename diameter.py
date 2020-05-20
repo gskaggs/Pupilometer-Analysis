@@ -91,7 +91,7 @@ if result:
     print("Horizontal Diameter:", (x_hi - x_lo) * pxl_width, "mm")
     print("Vertical Diameter:", (y_hi - y_lo) * pxl_width, "mm")
 
-    output.save("out_image.png")
+    output.save("output.png")
 else:
     print("Pupil Not Centered")
 
