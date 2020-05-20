@@ -14,8 +14,10 @@ in_data = image.load()
 output = image.copy()
 out_data = output.load()
 
+print()
 
 ###############################################################################
+
 from queue import Queue
 
 def intensity(color):
@@ -80,12 +82,17 @@ def flood_fill():
 
     return (x_lo, x_hi, y_lo, y_hi)
 
+###############################################################################
+
 result = flood_fill()
 #result = None
 if result:
-    print(result)
+    x_lo, x_hi, y_lo, y_hi = result
+    print("Horizontal Diameter:", (x_hi - x_lo) * pxl_width, "mm")
+    print("Vertical Diameter:", (y_hi - y_lo) * pxl_width, "mm")
+
+    output.save("out_image.png")
 else:
     print("Pupil Not Centered")
 
 
-output.save("out_image.png")

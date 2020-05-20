@@ -1,0 +1,6 @@
+('Photo Name', 'input.png')
+('Pixel Width (mm)', '0.1')
+('Epsilon', '128')
+
+Horizontal Diameter: 6.4 mm
+Vertical Diameter: 6.5 mm
