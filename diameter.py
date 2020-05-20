@@ -10,42 +10,81 @@ pxl_width = float(command_line[1])
 epsilon = float(command_line[2])
 
 image = Image.open(filename)
+in_data = image.load()
 output = image.copy()
+out_data = output.load()
 
-output.save("out_image.png")
 
 ###############################################################################
 from queue import Queue
 
-def valid(coords):
-    x, y = coords
-    return True
+def valid(x, y):
+    global epsilon
+    global image
+    width, height = image.size
+    global in_data
+
+    # In Bounds
+    if x < 0 or y < 0 or x >= width or y >= height:
+        return False
+
+    return in_data[x,y] < epsilon
+
 
 def flood_fill():
     global image
     global output
+    global out_data
     width, height = image.size
 
     x_lo, x_hi, y_lo, y_hi = width, 0, height, 0
     dx = [-1, -1, -1, 0, 0, 1, 1, 1]
     dy = [-1, 0, 1, -1, 1, -1, 0, 1]
+    visited = [[False for y in range(height)] for x in range(width)]
 
     start = (width//2, height//2)
 
+
     # Invariant: Each duple put in queue must be valid
-    if not valid(start):
+    if not valid(start[0], start[1]):
         return None
 
     q = Queue(maxsize = width*height)
     q.put(start)
 
+    # Breadth First Search
+    while not q.empty():
+        x, y = q.get()
+        
+        if visited[x][y]:
+            continue
+
+        visited[x][y] = True
+        out_data[x,y] = 255 
+
+        # Update result
+        x_lo = min(x_lo, x)
+        x_hi = max(x_hi, x)
+        y_lo = min(y_lo, y)
+        y_hi = max(y_hi, y)
+
+        for i in range(len(dx)):
+            # x prime, y prime: The next coordinates to consider
+            xp, yp = x + dx[i], y + dy[i]
+            if valid(xp, yp):
+                q.put((xp, yp))
 
 
 
 
     return (x_lo, x_hi, y_lo, y_hi)
 
-flood_fill()
+result = flood_fill()
+#result = None
+if result:
+    print(result)
+else:
+    print("Pupil Not Centered")
 
 
-
+output.save("out_image.png")
