@@ -14,6 +14,38 @@ output = image.copy()
 
 output.save("out_image.png")
 
+###############################################################################
+from queue import Queue
+
+def valid(coords):
+    x, y = coords
+    return True
+
+def flood_fill():
+    global image
+    global output
+    width, height = image.size
+
+    x_lo, x_hi, y_lo, y_hi = width, 0, height, 0
+    dx = [-1, -1, -1, 0, 0, 1, 1, 1]
+    dy = [-1, 0, 1, -1, 1, -1, 0, 1]
+
+    start = (width//2, height//2)
+
+    # Invariant: Each duple put in queue must be valid
+    if not valid(start):
+        return None
+
+    q = Queue(maxsize = width*height)
+    q.put(start)
+
+
+
+
+
+    return (x_lo, x_hi, y_lo, y_hi)
+
+flood_fill()
 
 
 
