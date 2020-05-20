@@ -9,7 +9,10 @@ filename = command_line[0]
 pxl_width = float(command_line[1])
 epsilon = float(command_line[2])
 
+image = Image.open(filename)
+output = image.copy()
 
+output.save("out_image.png")
 
 
 
