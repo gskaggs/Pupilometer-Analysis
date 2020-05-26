@@ -9,6 +9,6 @@ where pixel width is the estimated width in mm each pixel of the pupil represent
 
 diameter.py runs a BFS flood fill algorithm to determine the pupil's horizontal and vertical diameters, and produces a new image with the pupil outlined in blue.
 
-Executing run.sh will run the file with the example config arguments in config.txt and will redirect the result to output.txt.
+Executing run.sh will run diameter.py with the example config arguments in config.txt and will redirect the result to output.txt.
 
 Limitations: The pupil must be centered in the provided image.
