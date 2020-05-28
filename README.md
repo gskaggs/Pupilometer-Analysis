@@ -26,3 +26,6 @@ Calling the script *run.sh* will run *diameter.py* with the example config argum
 
 ## Limitations 
 The pupil must be centered in the provided image. If it's not, *diameter.py* will give an error message to stdout.
+
+## Liscensing
+See *liscence.txt*.
